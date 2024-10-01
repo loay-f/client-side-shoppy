@@ -27,10 +27,6 @@ const router = createBrowserRouter([
             element: <Home />,
           },
           {
-            path: "/contact",
-            // element: <Contact />,
-          },
-          {
             path: "/collections/categories/:category?",
             element: <Collection />,
           },

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { RiProductHuntFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 // Product Component
 const Product = ({ product, quantity, onQuantityChange, removeFromCart }) => {
@@ -83,7 +82,7 @@ const Cart = () => {
           setError(`Your cart is Empty`);
           console.error("", err.response.status);
         } else {
-          console.error("shit", err.response.status);
+          console.error(err.response.status);
         }
       } finally {
         setLoading(false);
@@ -95,9 +94,6 @@ const Cart = () => {
 
   // Function to remove an item from the cart
   const removeFromCart = async (productId) => {
-    const payload = {
-      productId: productId,
-    };
     try {
       // Call API to remove the product from cart
       const response = await axios.delete(
@@ -108,11 +104,6 @@ const Cart = () => {
         }
       );
 
-      // const response = await axios.get("http://localhost:3000/cart", {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // });
       setCart(response.data.products);
     } catch (error) {
       console.error("Error removing product from cart:", productId);
@@ -168,7 +159,7 @@ const Cart = () => {
           </div>
         </div>
 
-        {cart ? (
+        {/* {cart ? (
           <>
             <h1>
               Your cart is Empty
@@ -178,7 +169,7 @@ const Cart = () => {
               </Link>
             </h1>
           </>
-        ) : (
+        ) : ( */}
           <div className="flex flex-col gap-3 border-t border-gray-200 py-6 mt-6">
             <div className="flex justify-between text-base font-medium text-gray-900">
               <p>Subtotal</p>

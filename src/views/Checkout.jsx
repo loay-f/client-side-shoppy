@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const token = localStorage.getItem("authToken");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,6 +53,7 @@ const Checkout = () => {
       );
       // Handle success response
       console.log("Response:", response.data);
+      navigate("/order-history");
     } catch (err) {
       // Handle any errors (e.g., 500 errors, network issues)
       setError("Failed to add product to cart. Please try again.");

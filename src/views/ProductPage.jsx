@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TrendingProducts from "../components/TrendingProducts";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 const ProductPage = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [addedSuccessfully, setAddedSuccessfully] = useState(false);
   const [currentColor, setCurrentColor] = useState(null);
   const { productId } = useParams();
   !loading ? (product.discount = 200) : console.log("");
 
   const [quantity, setQuantity] = useState(1); // Default quantity is 1
-  const [response, setResponse] = useState(null);
+  // const [response, setResponse] = useState(null);
   const token = localStorage.getItem("authToken");
 
   const handleAddToCart = async () => {
@@ -35,8 +37,9 @@ const ProductPage = () => {
         }
       );
       // Handle success response
-      setResponse(response.data);
-      console.log("Response:", response.data);
+      if (response.status >= 200 && response.status < 300) {
+        setAddedSuccessfully(true);
+      }
     } catch (error) {
       // Handle any errors (e.g., 500 errors, network issues)
       setError("Failed to add product to cart. Please try again.");
@@ -53,7 +56,7 @@ const ProductPage = () => {
         setProduct(response.data);
         setLoading(false);
       } catch {
-        console.log(productId);
+        // console.log(productId);
         setError("An error occurred while fetching data");
         setLoading(false);
       }
@@ -62,12 +65,24 @@ const ProductPage = () => {
     fetchData();
   }, [productId]);
 
-  console.log(product);
+  // console.log(product);
   if (loading) return <div>loading</div>;
   if (error) return <div>{error}</div>;
 
   return (
     <>
+      {addedSuccessfully && (
+        <span className="absolute top-16 left-0 right-0 flex justify-between px-16 py-4 w-full bg-green-500 text-white text-lg">
+          <p>
+            Product added to <Link to={"/cart"} className="text-blue-900">cart</Link> successfully
+          </p>
+          <XMarkIcon
+            className="h-6 w-6 cursor-pointer"
+            onClick={() => setAddedSuccessfully(false)}
+            aria-hidden="true"
+          />
+        </span>
+      )}
       <div className="w-[90%] mx-auto px-4 pt-16">
         <div className="flex flex-row gap-14 mb-20 sm:flex-col md:flex-col">
           <div className="w-1/2 mb-8 md:w-full md:mb-0 sm:w-full sm:mb-0">

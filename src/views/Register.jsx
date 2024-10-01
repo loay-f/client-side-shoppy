@@ -24,9 +24,9 @@ const Register = () => {
     } else if (!isEmailValid) {
       // Is email valid
       setErrorMessage("please enter a valid email");
-    } else if (!isPasswordValid) {
+    // } else if (!isPasswordValid) {
       // Is password valid
-      setErrorMessage("please enter a valid password");
+      // setErrorMessage("please enter a valid password");
     } else if (inputs.password !== inputs.confirmPassword) {
       setErrorMessage("Passwords Must Match");
     } else {
@@ -50,7 +50,7 @@ const Register = () => {
     <>
       <div className="flex min-h-screen flex-1 flex-col justify-center items-center bg-gray-50 px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h1 className="text-5xl text-center font-blod font-serif">FOG</h1>
+          <h1 className="text-5xl text-center font-blod font-serif">Shoppy</h1>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
@@ -133,7 +133,7 @@ const Register = () => {
               </div>
             </div>
 
-            <div className="text-red my-0">{errorMessage}</div>
+            <div className="text-red-500 my-0">{errorMessage}</div>
 
             <div>
               <button

@@ -146,7 +146,7 @@ const OrderHistory = () => {
                             clipRule="evenodd"
                           />
                         </svg>
-                        Delivered
+                        In progress
                       </p>
                       <div className="flex sm:justify-between xs:justify-between sm:w-full xs:w-full gap-5 sm:gap-0 xs:gap-0">
                         <button className="text-indigo-600 sm:w-1/2 xs:w-1/2 hover:text-indigo-800 border sm:rounded-none xs:rounded-none p-3 rounded-md">

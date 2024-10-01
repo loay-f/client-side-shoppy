@@ -7,7 +7,7 @@ const Footer = () => {
       <footer className="grid grid-cols-4 w-[88%] mx-auto gap-7 text-white md:grid-cols-2 sm:grid-cols-1">
         <div className="">
           <NavLink to={`/`} className="text-4xl font-semibold font-serif">
-            FOG
+            Shoppy
           </NavLink>
           <div className="grid grid-cols-4 gap-2 mt-5">
             <div className="aspect-square relative rounded-md overflow-hidden">
